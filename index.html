@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  
+  <title>altego. // HIGH PERFORMANCE PC OPTIMIZATION ENGINE</title>
+  <meta name="description" content="Unlock maximum FPS, reduce input latency by up to 45%, and eliminate micro-stutters with ALTEGO's deep kernel-level PC optimization engine.">
+  <meta name="keywords" content="PC Optimization, FPS Boost, Lower Input Lag, Gaming Performance, Windows Tweak, ALTEGO">
+  <meta name="author" content="RAMVIGNESH - raamm.me">
+
+  <meta property="og:title" content="altego. // PC OPTIMIZATION ENGINE">
+  <meta property="og:description" content="Extreme FPS Boost & Latency Reduction for Competitive Gaming.">
+  <meta property="og:type" content="website">
+
+  <!-- GOOGLE FONTS (SPACE GROTESK & INTER) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700;800;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/src/style.css">
+  
+  <!-- RAZORPAY CHECKOUT SDK -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body class="preloader-active">
+
+  <!-- 0. CYBERPUNK HACKING TERMINAL PRELOADER WITH DEDICATED 3D WEBGL CORE -->
+  <div id="preloader">
+    <canvas id="preloader-matrix-canvas"></canvas>
+    <div id="preloader-3d-viewport"></div>
+    <div class="preloader-overlay-vignette"></div>
+    
+    <div class="preloader-content cyber-corner">
+      <div class="hacking-header">
+        <span class="hack-status-dot"></span>
+        <span class="preloader-label">[ ALTEGO // KERNEL BREACH IN PROGRESS ]</span>
+      </div>
+
+      <div class="hacking-terminal-logs" id="terminal-logs">
+        <div class="log-line text-red">> INITIALIZING SYSTEM INTRUSION...</div>
+      </div>
+
+      <div class="preloader-counter">
+        <span id="preloader-percent">00</span><span class="unit">%</span>
+      </div>
+
+      <div class="preloader-milestone" id="preloader-milestone">RUNNING EXPLOIT PAYLOAD...</div>
+
+      <div class="preloader-line-track">
+        <div id="preloader-line-fill"></div>
+      </div>
+
+      <!-- INTERACTIVE SYSTEM ENTRY BUTTON -->
+      <button class="btn btn-hero-primary cyber-btn" id="btn-enter-system" style="margin-top: 16px; display: none; width: 100%;">
+        <span>[ ENTER ENGINE // INITIALIZE → ]</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- 1. CYBERPUNK LASER TARGETING RETICLE CURSOR (DESKTOP ONLY) -->
+  <div id="cursor-crosshair">
+    <div class="hud-tick top-left"></div>
+    <div class="hud-tick top-right"></div>
+    <div class="hud-tick bottom-left"></div>
+    <div class="hud-tick bottom-right"></div>
+  </div>
+  <div id="cursor-ring"></div>
+  <div id="cursor-dot"></div>
+  <div id="cursor-particles"></div>
+
+  <!-- 2. WEBGL 3D HARDWARE BACKGROUND CANVAS -->
+  <div id="webgl-container"></div>
+  <div class="cyber-scanlines"></div>
+
+  <!-- MAIN APP SHELL -->
+  <div id="app">
+
+    <!-- SHARP ANGULAR CYBERPUNK HUD NAVBAR -->
+    <header class="navbar" id="navbar">
+      <div class="nav-container">
+        <a href="#hero" class="brand-logo" id="nav-brand-logo">
+          <div class="logo-mark">
+            <div class="logo-core"></div>
+          </div>
+          <span class="logo-text">altego<span class="logo-red-dot">.</span></span>
+          <span class="cyber-nav-tag">[ SYS.OPT ]</span>
+        </a>
+
+        <nav class="nav-links">
+          <a href="#features" class="nav-link">FEATURES</a>
+          <a href="#how-it-works" class="nav-link">PROCESS</a>
+          <a href="#pricing" class="nav-link">PRICING</a>
+          <a href="#faq" class="nav-link">FAQ</a>
+        </nav>
+
+        <div class="nav-actions">
+          <a href="#pricing" class="btn btn-nav-cta cyber-btn">
+            <span>GET STARTED</span>
+          </a>
+
+          <!-- BULLETPROOF MOBILE HAMBURGER BUTTON -->
+          <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Toggle Navigation Menu" onclick="window.toggleMobileDrawer(event)" ontouchstart="window.toggleMobileDrawer(event)">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- MOBILE DIM BACKDROP -->
+    <div class="mobile-backdrop-dim" id="mobile-backdrop" onclick="window.closeMobileDrawer(event)"></div>
+
+    <!-- HALF-HEIGHT SLIDE-DOWN CYBER GLASS MOBILE DRAWER -->
+    <div class="mobile-menu-overlay" id="mobile-menu">
+      <div class="m-drawer-container">
+        <div class="m-drawer-header">
+          <a href="#hero" class="brand-logo" onclick="window.closeMobileDrawer(event)">
+            <div class="logo-mark"><div class="logo-core"></div></div>
+            <span class="logo-text">altego<span class="logo-red-dot">.</span></span>
+          </a>
+          <button class="mobile-close-btn" id="mobile-menu-close" onclick="window.closeMobileDrawer(event)" aria-label="Close Menu">&times;</button>
+        </div>
+
+        <nav class="m-drawer-nav">
+          <a href="#features" class="mobile-link" onclick="window.closeMobileDrawer(event)">
+            <span>01</span> FEATURES
+          </a>
+          <a href="#how-it-works" class="mobile-link" onclick="window.closeMobileDrawer(event)">
+            <span>02</span> PROCESS
+          </a>
+          <a href="#pricing" class="mobile-link" onclick="window.closeMobileDrawer(event)">
+            <span>03</span> PRICING
+          </a>
+          <a href="#faq" class="mobile-link" onclick="window.closeMobileDrawer(event)">
+            <span>04</span> FAQ
+          </a>
+        </nav>
+
+        <div class="m-drawer-footer">
+          <a href="#pricing" class="btn btn-hero-primary cyber-btn mobile-cta" onclick="window.closeMobileDrawer(event)">
+            <span>VIEW OPTIMIZATION PACKS →</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section class="hero-section" id="hero">
+      <div class="hero-container">
+        <div class="hero-content">
+          <div class="hero-badge cyber-corner">
+            <span class="badge-dot"></span>
+            <span>[ SYS.OPT // HIGH PERFORMANCE ENGINE ]</span>
+          </div>
+
+          <h1 class="hero-title">
+            ULTIMATE <br>
+            <span class="text-gradient">PC OPTIMIZATION</span>
+          </h1>
+          
+          <div class="red-accent-underline"></div>
+
+          <p class="hero-subtitle">
+            Boost your PC performance, improve gaming responsiveness, reduce unnecessary background processes, and optimize your system for a smoother gaming experience.
+          </p>
+
+          <!-- MOBILE COMPACT 2X2 HUD GRID -->
+          <div class="mobile-hud-grid">
+            <div class="m-hud-box">
+              <span class="m-hud-tag">FRAME PACING</span>
+              <span class="m-hud-val text-red">240 FPS</span>
+            </div>
+            <div class="m-hud-box">
+              <span class="m-hud-tag">INPUT QUEUE</span>
+              <span class="m-hud-val">12ms</span>
+            </div>
+            <div class="m-hud-box">
+              <span class="m-hud-tag">CPU SCHEDULER</span>
+              <span class="m-hud-val text-red">OPTIMIZED</span>
+            </div>
+            <div class="m-hud-box">
+              <span class="m-hud-tag">GPU CLOCK</span>
+              <span class="m-hud-val">2940 MHz</span>
+            </div>
+          </div>
+
+          <div class="hero-cta-wrapper">
+            <a href="#pricing" class="btn btn-hero-primary cyber-btn">
+              <span>VIEW OPTIMIZATION PACKS →</span>
+            </a>
+          </div>
+
+          <!-- SPACIOUS CYBER GLASS TRUST PILL BAR -->
+          <div class="hero-trust-bar">
+            <div class="trust-pill">
+              <span class="trust-pill-icon">🔒</span>
+              <span class="trust-pill-text">ONE-TIME PURCHASE</span>
+            </div>
+            <div class="trust-pill">
+              <span class="trust-pill-icon">⚡</span>
+              <span class="trust-pill-text">INSTANT DELIVERY</span>
+            </div>
+            <div class="trust-pill">
+              <span class="trust-pill-icon">🛡️</span>
+              <span class="trust-pill-text">SECURE PAYMENT</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3D HERO HARDWARE INTERACTIVE VISUAL CONTAINER -->
+        <div class="hero-visual-wrapper">
+          <!-- 3D WebGL Canvas Mounted Directly Inside Container -->
+          <div id="hero-3d-canvas-container"></div>
+          
+          <div class="hud-chamber-glow"></div>
+
+          <!-- FLOATING 3D GLASS HUD PANELS -->
+          <div class="floating-hud-panel hud-panel-fps cyber-corner">
+            <span class="hud-tag">FRAME PACING</span>
+            <div class="hud-val">240 <small>FPS</small></div>
+            <div class="hud-sub">STABLE 0.1% LOWS</div>
+          </div>
+
+          <div class="floating-hud-panel hud-panel-latency cyber-corner">
+            <span class="hud-tag">INPUT QUEUE</span>
+            <div class="hud-val text-red">12<small>ms</small></div>
+            <div class="hud-sub">-42% LATENCY REDUCTION</div>
+          </div>
+
+          <div class="floating-hud-panel hud-panel-cpu cyber-corner">
+            <span class="hud-tag">CPU SCHEDULER</span>
+            <div class="hud-val">OPTIMIZED</div>
+            <div class="hud-sub">CORE ISOLATION ACTIVE</div>
+          </div>
+
+          <div class="floating-hud-panel hud-panel-gpu cyber-corner">
+            <span class="hud-tag">GPU CLOCK</span>
+            <div class="hud-val text-red">2940 <small>MHz</small></div>
+            <div class="hud-sub">VOLTAGE CURVE TUNED</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PERFORMANCE MARQUEE -->
+    <div class="performance-marquee">
+      <div class="marquee-track">
+        <div class="marquee-content">
+          <span>VALORANT // +38% FPS</span> <span class="marquee-divider">/</span>
+          <span>APEX LEGENDS // -45% LATENCY</span> <span class="marquee-divider">/</span>
+          <span>CS2 // ZERO STUTTER PACING</span> <span class="marquee-divider">/</span>
+          <span>WARZONE // +42 AVERAGE FPS</span> <span class="marquee-divider">/</span>
+          <span>FORTNITE // LOWEST DELAY</span> <span class="marquee-divider">/</span>
+        </div>
+        <div class="marquee-content">
+          <span>VALORANT // +38% FPS</span> <span class="marquee-divider">/</span>
+          <span>APEX LEGENDS // -45% LATENCY</span> <span class="marquee-divider">/</span>
+          <span>CS2 // ZERO STUTTER PACING</span> <span class="marquee-divider">/</span>
+          <span>WARZONE // +42 AVERAGE FPS</span> <span class="marquee-divider">/</span>
+          <span>FORTNITE // LOWEST DELAY</span> <span class="marquee-divider">/</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROBLEM SECTION -->
+    <section class="section" id="features">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-tag">[ THE PERFORMANCE GAP ]</span>
+          <h2 class="section-title">YOUR PC HAS MORE POTENTIAL.</h2>
+          <p class="section-subtitle">Unnecessary background activity, inefficient settings, and unoptimized configurations can affect responsiveness and overall gaming performance.</p>
+        </div>
+
+        <div class="problem-grid">
+          <div class="problem-card cyber-corner">
+            <div class="card-number">01</div>
+            <h3 class="problem-card-title">Windows Bloatware</h3>
+            <p class="problem-card-desc">Default background services and telemetry consume valuable CPU cycles and RAM bandwidth required by competitive games.</p>
+            <div class="card-line-accent"></div>
+          </div>
+
+          <div class="problem-card cyber-corner">
+            <div class="card-number">02</div>
+            <h3 class="problem-card-title">Input Queue Latency</h3>
+            <p class="problem-card-desc">Unoptimized USB interrupt request priority creates artificial delays between your mouse click and on-screen render frames.</p>
+            <div class="card-line-accent"></div>
+          </div>
+
+          <div class="problem-card cyber-corner">
+            <div class="card-number">03</div>
+            <h3 class="problem-card-title">Frame Time Spikes</h3>
+            <p class="problem-card-desc">Incorrect power state transitions and unthrottled DPC latency cause jarring micro-stutters during heavy gunfights.</p>
+            <div class="card-line-accent"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VISUAL SHOWCASE SPLIT SECTION 1 -->
+    <section class="section">
+      <div class="section-container">
+        <div class="split-visual-grid">
+          <div class="split-content-col">
+            <span class="section-tag">[ HARDWARE HYPER-DRIVE ]</span>
+            <h2 class="split-title">GPU VRAM & POWER TARGET UNLOCKED.</h2>
+            <p class="split-desc">Our scripts recalibrate registry memory management, core parking, and PCI-Express bus priority to ensure your GPU operates at maximum clock stability.</p>
+            <div class="split-metrics-box">
+              <div class="metric-item">
+                <div class="metric-num text-red">+42 FPS</div>
+                <div class="metric-lbl">AVERAGE BOOST</div>
+              </div>
+              <div class="metric-item">
+                <div class="metric-num">0.1%</div>
+                <div class="metric-lbl">LOW FRAME PACING</div>
+              </div>
+            </div>
+          </div>
+          <div class="split-media-col">
+            <div class="image-wrapper cyber-corner">
+              <img src="/gpu_hero_core.jpg" alt="GPU Hardware Core Optimization" class="showcase-img" loading="lazy">
+              <div class="image-overlay-glow"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VISUAL SHOWCASE SPLIT SECTION 2 -->
+    <section class="section">
+      <div class="section-container">
+        <div class="showcase-stack">
+          <div class="stack-panel cyber-corner">
+            <img src="/hardware_cooling_system.jpg" alt="Hardware Cooling System" class="panel-bg" loading="lazy">
+            <div class="panel-overlay"></div>
+            <div class="panel-content">
+              <span class="panel-tag">[ KERNEL PRIORITY ]</span>
+              <h3 class="panel-heading">WINDOWS SCHEDULER TUNING</h3>
+              <p class="panel-text">Force game threads directly to performance cores while routing background tasks to low-power states.</p>
+            </div>
+          </div>
+
+          <div class="stack-panel cyber-corner">
+            <img src="/gaming_pc_showcase.jpg" alt="Gaming PC Showcase" class="panel-bg" loading="lazy">
+            <div class="panel-overlay"></div>
+            <div class="panel-content">
+              <span class="panel-tag">[ LATENCY REDUCTION ]</span>
+              <h3 class="panel-heading">SYSTEM RESPONSIBLITY ENGINE</h3>
+              <p class="panel-text">Eliminate DPC latency spikes with customized interrupt affinity settings and optimized power delivery.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS TIMELINE (NEAT CYBER GLASS CONTAINERS) -->
+    <section class="section" id="how-it-works">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-tag">[ DEPLOYMENT SEQUENCE ]</span>
+          <h2 class="section-title">THREE STEPS TO PEAK PERFORMANCE</h2>
+        </div>
+
+        <div class="timeline-wrapper">
+          <div class="timeline-track"><div class="timeline-fill-line"></div></div>
+          <div class="timeline-steps">
+            <div class="step-card cyber-corner">
+              <div class="step-badge">STEP 01</div>
+              <h3 class="step-title">Select Optimization Pack</h3>
+              <p class="step-desc">Choose between our Basic or Advanced Optimization Pack based on your gaming goals.</p>
+            </div>
+            <div class="step-card cyber-corner">
+              <div class="step-badge">STEP 02</div>
+              <h3 class="step-title">Run Automated Setup</h3>
+              <p class="step-desc">Execute our automated scripts with step-by-step guidance and automatic backup creation.</p>
+            </div>
+            <div class="step-card cyber-corner">
+              <div class="step-badge">STEP 03</div>
+              <h3 class="step-title">Experience Peak Performance</h3>
+              <p class="step-desc">Reboot your system and enjoy higher FPS, lower input latency, and smoother gameplay.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING & TRUST BADGES COMBINED SECTION (FILLED MOBILE SPACING) -->
+    <section class="section" id="pricing">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-tag">[ PRICING PLANS ]</span>
+          <h2 class="section-title">SELECT YOUR OPTIMIZATION LEVEL</h2>
+          <p class="section-subtitle">One-time purchase. Instant digital access. No recurring subscription fees.</p>
+        </div>
+
+        <div class="pricing-grid">
+          <!-- BASIC PACK -->
+          <div class="pricing-card tilt-card cyber-corner">
+            <div class="card-tier-label">BASIC PACK</div>
+            <div class="card-price-wrap"><span class="currency">₹</span>399</div>
+            <p class="card-tier-desc">Essential Windows cleanup and system optimizations for casual gaming setups.</p>
+            
+            <ul class="card-feature-list">
+              <li><span class="check">✓</span> Essential Windows Telemetry Debloat</li>
+              <li><span class="check">✓</span> Basic Power Plan Tweaks</li>
+              <li><span class="check">✓</span> System Temp File & Cache Cleaner</li>
+              <li><span class="check">✓</span> Basic Network Latency Fixes</li>
+              <li><span class="check">✓</span> Step-by-Step PDF Setup Guide</li>
+            </ul>
+
+            <button class="btn btn-outline cyber-btn btn-purchase" data-pack="basic" data-price="399" data-name="BASIC OPTIMIZATION">
+              <span>GET BASIC PACK →</span>
+            </button>
+          </div>
+
+          <!-- ADVANCED PACK -->
+          <div class="pricing-card card-advanced tilt-card cyber-corner">
+            <div class="card-badge">BEST VALUE</div>
+            <div class="card-ambient-glow"></div>
+            <div class="traveling-border-light"></div>
+
+            <div class="card-tier-label text-red">ADVANCED PACK</div>
+            <div class="card-price-wrap"><span class="currency">₹</span>699</div>
+            <p class="card-tier-desc">Full-suite kernel tweaks, GPU VRAM optimization, and latency tuning for competitive players.</p>
+            
+            <ul class="card-feature-list">
+              <li><span class="check">✓</span> Everything in Basic Pack</li>
+              <li><span class="check">✓</span> Advanced Kernel Scheduler Tuning</li>
+              <li><span class="check">✓</span> Custom Power Plan & Core Unparking</li>
+              <li><span class="check">✓</span> GPU VRAM & Power Target Optimization</li>
+              <li><span class="check">✓</span> USB & Mouse Interrupt Latency Tuning</li>
+              <li><span class="check">✓</span> One-Click Restore & System Backup</li>
+              <li><span class="check">✓</span> Priority Customer Support</li>
+            </ul>
+
+            <button class="btn btn-red-glow cyber-btn btn-purchase" data-pack="advanced" data-price="699" data-name="ADVANCED OPTIMIZATION">
+              <span>GET ADVANCED PACK →</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- TRUST BADGES (DIRECTLY INSIDE PRICING CONTAINER WITH TIGHT SPACING) -->
+        <div class="trust-grid" style="margin-top: 24px;">
+          <div class="trust-card cyber-corner">
+            <div class="trust-icon">🛡️</div>
+            <h4 class="trust-title">Safety First</h4>
+            <p class="trust-desc">Automatic restore points created before any optimization script runs.</p>
+          </div>
+          <div class="trust-card cyber-corner">
+            <div class="trust-icon">⚡</div>
+            <h4 class="trust-title">Instant Access</h4>
+            <p class="trust-desc">Receive immediate download instructions via email after payment.</p>
+          </div>
+          <div class="trust-card cyber-corner">
+            <div class="trust-icon">💻</div>
+            <h4 class="trust-title">Windows Compatible</h4>
+            <p class="trust-desc">Fully tested and safe for Windows 10 and Windows 11 (64-bit).</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FAQ SECTION (2-COLUMN CYBERPUNK SPLIT GRID) -->
+    <section class="section" id="faq">
+      <div class="section-container">
+        <div class="faq-split-grid">
+          
+          <div class="faq-left-col">
+            <span class="section-tag">[ FREQUENTLY ASKED ]</span>
+            <h2 class="faq-split-title">SYSTEM KNOWLEDGE BASE</h2>
+            <p class="faq-split-subtitle">Everything you need to know about ALTEGO optimizations, safety guarantees, and system support.</p>
+            
+            <div class="faq-support-card cyber-corner">
+              <span class="support-badge">[ DIRECT CONTACT ]</span>
+              <div class="support-text">Have a specific question about your system specs? Reach out directly to our engineering team.</div>
+              <a href="#" class="btn btn-outline cyber-btn legal-trigger" data-modal="contact" style="margin-top: 8px;">
+                <span>CONTACT SUPPORT →</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="faq-right-col">
+            <div class="faq-accordion">
+              <div class="faq-item">
+                <button class="faq-header">
+                  <span class="faq-q-number">Q01</span>
+                  <span class="faq-question">Are these optimizations safe for my computer?</span>
+                  <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-body">
+                  <p>Yes. All tweaks are non-destructive and use native Windows configurations and registry settings. Our scripts automatically create a system restore point prior to applying any changes.</p>
+                </div>
+              </div>
+
+              <div class="faq-item">
+                <button class="faq-header">
+                  <span class="faq-q-number">Q02</span>
+                  <span class="faq-question">Will these tweaks cause game bans or anti-cheat triggers?</span>
+                  <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-body">
+                  <p>No. ALTEGO does not modify game files, memory addresses, or inject code into games. It optimizes Windows OS settings, service priorities, and driver power states, which is 100% compliant with Vanguard, EAC, BattlEye, and Ricochet.</p>
+                </div>
+              </div>
+
+              <div class="faq-item">
+                <button class="faq-header">
+                  <span class="faq-q-number">Q03</span>
+                  <span class="faq-question">How will I receive my files after purchasing?</span>
+                  <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-body">
+                  <p>Directly after payment verification via Razorpay, you will receive an instant download link on screen as well as a confirmation email sent to your inbox.</p>
+                </div>
+              </div>
+
+              <div class="faq-item">
+                <button class="faq-header">
+                  <span class="faq-q-number">Q04</span>
+                  <span class="faq-question">Can I undo the tweaks if needed?</span>
+                  <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-body">
+                  <p>Yes. Both the Basic and Advanced packs include a One-Click Restore script that cleanly reverts registry keys, services, and power plans back to default Windows state.</p>
+                </div>
+              </div>
+
+              <div class="faq-item">
+                <button class="faq-header">
+                  <span class="faq-q-number">Q05</span>
+                  <span class="faq-question">What Windows versions are supported?</span>
+                  <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-body">
+                  <p>ALTEGO is fully optimized for Windows 10 (all versions 20H2 and newer) and Windows 11 (64-bit systems).</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA SECTION -->
+    <section class="final-cta-section">
+      <div class="final-cta-bg-glow"></div>
+      <div class="section-container">
+        <div class="final-cta-card cyber-corner">
+          <div class="final-cta-content">
+            <h2 class="final-cta-title">READY FOR PEAK GAMING PERFORMANCE?</h2>
+            <p class="final-cta-subtitle">Join thousands of competitive gamers who have unlocked higher FPS and lower latency.</p>
+            <a href="#pricing" class="btn btn-hero-primary cyber-btn">
+              <span>GET ALTEGO OPTIMIZATION NOW →</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer-cyber-command">
+      <div class="footer-container">
+        <div class="footer-grid">
+          
+          <div class="footer-col f-col-brand">
+            <a href="#hero" class="brand-logo">
+              <div class="logo-mark"><div class="logo-core"></div></div>
+              <span class="logo-text">altego<span class="logo-red-dot">.</span></span>
+            </a>
+            <p class="f-brand-tagline">High Performance PC Optimization Engine for Competitive Gamers.</p>
+            <div class="f-status-pill">
+              <span class="badge-dot"></span> KERNEL VERSION v4.8 ACTIVE
+            </div>
+          </div>
+
+          <div class="f-links-mobile-grid">
+            <div class="footer-col">
+              <h4 class="f-col-title"><span class="f-title-tag">//</span> NAVIGATION</h4>
+              <ul class="f-nav-list">
+                <li><a href="#features"><span>></span> Features</a></li>
+                <li><a href="#how-it-works"><span>></span> Process</a></li>
+                <li><a href="#pricing"><span>></span> Pricing</a></li>
+                <li><a href="#faq"><span>></span> FAQ</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-col">
+              <h4 class="f-col-title"><span class="f-title-tag">//</span> LEGAL</h4>
+              <ul class="f-nav-list">
+                <li><a href="#" class="legal-trigger" data-modal="terms"><span>></span> Terms of Service</a></li>
+                <li><a href="#" class="legal-trigger" data-modal="privacy"><span>></span> Privacy Policy</a></li>
+                <li><a href="#" class="legal-trigger" data-modal="refund"><span>></span> Refund Policy</a></li>
+                <li><a href="#" class="legal-trigger" data-modal="contact"><span>></span> Contact Support</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="f-col-title"><span class="f-title-tag">//</span> TELEMETRY</h4>
+            <div class="footer-telemetry-box cyber-corner">
+              <div class="f-tel-row">
+                <span class="f-tel-label">LATENCY:</span>
+                <span class="f-tel-val text-red">0.4ms</span>
+              </div>
+              <div class="f-tel-row">
+                <span class="f-tel-label">STATUS:</span>
+                <span class="f-tel-val">ONLINE</span>
+              </div>
+              <div class="f-tel-row">
+                <span class="f-tel-label">CONTACT:</span>
+                <span class="f-tel-val text-red">optalego@gmail.com</span>
+              </div>
+              <a href="mailto:optalego@gmail.com" class="btn btn-outline cyber-btn f-email-btn">
+                <span>SEND EMAIL</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="footer-bottom-bar">
+          <div class="f-copyright">
+            © 2026 ALTEGO. All rights reserved. Not affiliated with Microsoft.
+          </div>
+          
+          <div class="cool-author-sig">
+            <div class="cyber-author-tag">
+              <span class="auth-dot">●</span>
+              <span>Site by RAMVIGNESH</span>
+            </div>
+            <a href="https://raamm.me" target="_blank" rel="noopener noreferrer" class="signature-link">raamm.me</a>
+          </div>
+
+          <div class="f-ssl-badge">[ 256-BIT ENCRYPTED ]</div>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- PURCHASE MODAL -->
+  <div class="modal-overlay" id="purchase-modal">
+    <div class="modal-card cyber-corner">
+      <button class="modal-close" id="modal-close-btn">&times;</button>
+      <div class="modal-title">ORDER SUMMARY</div>
+      
+      <div class="modal-selected-pack">
+        <span class="pack-name" id="modal-pack-name">ADVANCED OPTIMIZATION</span>
+        <span class="pack-price" id="modal-pack-price">₹699</span>
+      </div>
+
+      <form id="checkout-form">
+        <div class="form-group">
+          <label for="customer-email">Email Address (For File Delivery)</label>
+          <input type="email" id="customer-email" required placeholder="your.name@example.com">
+        </div>
+
+        <button type="submit" class="btn btn-hero-primary cyber-btn btn-red-glow" id="btn-pay-submit">
+          <span>CONTINUE TO SECURE PAYMENT →</span>
+        </button>
+      </form>
+
+      <div class="modal-footer">
+        🔒 Instant delivery via email after Razorpay payment completion.
+      </div>
+    </div>
+  </div>
+
+  <!-- SUCCESS OVERLAY -->
+  <div class="success-overlay" id="success-overlay">
+    <div class="success-card cyber-corner">
+      <div class="success-check-icon">✓</div>
+      <h2 class="success-title">ORDER CONFIRMED!</h2>
+      <p class="success-subtitle">Your optimization pack is ready for instant download.</p>
+
+      <div class="order-summary-box">
+        <div class="order-row">
+          <span class="order-label">ORDER ID:</span>
+          <span class="order-val text-red" id="success-order-id">ALT-94821</span>
+        </div>
+        <div class="order-row">
+          <span class="order-label">PRODUCT:</span>
+          <span class="order-val" id="success-pack-name">ADVANCED OPTIMIZATION</span>
+        </div>
+        <div class="order-row">
+          <span class="order-label">TOTAL PAID:</span>
+          <span class="order-val" id="success-amount">₹699</span>
+        </div>
+      </div>
+
+      <a href="#" class="btn btn-hero-primary cyber-btn btn-download" id="success-download-btn" target="_blank">
+        <span>DOWNLOAD OPTIMIZATION PACK (.ZIP) →</span>
+      </a>
+
+      <p class="success-delivery-note">A confirmation link has also been sent to your email.</p>
+    </div>
+  </div>
+
+  <!-- LEGAL MODALS -->
+  <div class="modal-overlay" id="modal-terms">
+    <div class="modal-card cyber-corner">
+      <button class="modal-close legal-close">&times;</button>
+      <h3 class="modal-title">TERMS OF SERVICE</h3>
+      <div class="legal-body">
+        <p>By purchasing ALTEGO optimization scripts, you agree to execute the provided scripts on compatible Windows 10/11 64-bit systems.</p>
+        <p>ALTEGO provides software configuration tools for performance tuning. Users are advised to keep system backups.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="modal-privacy">
+    <div class="modal-card cyber-corner">
+      <button class="modal-close legal-close">&times;</button>
+      <h3 class="modal-title">PRIVACY POLICY</h3>
+      <div class="legal-body">
+        <p>We respect your privacy. Email addresses collected during checkout are strictly used for digital file delivery and order confirmation.</p>
+        <p>No personal data is sold or shared with third parties.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="modal-refund">
+    <div class="modal-card cyber-corner">
+      <button class="modal-close legal-close">&times;</button>
+      <h3 class="modal-title">REFUND POLICY</h3>
+      <div class="legal-body">
+        <p>Due to the digital nature of optimization scripts, all sales are final once files have been downloaded.</p>
+        <p>If you experience any technical issues running scripts, our support team at optalego@gmail.com will assist you.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT SUPPORT MODAL -->
+  <div class="modal-overlay" id="modal-contact">
+    <div class="modal-card cyber-corner">
+      <button class="modal-close legal-close">&times;</button>
+      <h3 class="modal-title">CONTACT SUPPORT</h3>
+      <form id="contact-form">
+        <div class="form-group">
+          <label for="contact-name">Your Name</label>
+          <input type="text" id="contact-name" required placeholder="Vignesh">
+        </div>
+        <div class="form-group">
+          <label for="contact-email">Email Address</label>
+          <input type="email" id="contact-email" required placeholder="optalego@gmail.com">
+        </div>
+        <div class="form-group">
+          <label for="contact-message">Message</label>
+          <textarea id="contact-message" rows="4" required placeholder="How can we help optimize your setup?"></textarea>
+        </div>
+        <button type="submit" class="btn btn-hero-primary cyber-btn" style="width: 100%;">
+          <span>DISPATCH MESSAGE →</span>
+        </button>
+      </form>
+      <div id="contact-status-msg" style="display: none; margin-top: 14px; font-size: 0.85rem; color: var(--accent-red); text-align: center;"></div>
+    </div>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
